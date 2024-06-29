@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 
 function NavBar() {
   const [isMounted, setIsMounted] = useState<boolean | null>(null);
+  const { isAuthenticated, user, logout, fetchUser } = useAuthStore();
   useEffect(() => {
+    fetchUser();
     setIsMounted(true);
   }, []);
 
-  const { isAuthenticated, user, logout } = useAuthStore();
   if (!isMounted) return null;
   return (
     <div className="navbar bg-base-300 pt-3">

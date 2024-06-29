@@ -34,7 +34,7 @@ function Login({ isRegister = false }: { isRegister?: boolean }) {
     return res.json();
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setLoginForm((prevForm) => ({
       ...prevForm,
@@ -42,7 +42,7 @@ function Login({ isRegister = false }: { isRegister?: boolean }) {
     }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (isRegister && loginForm.password !== loginForm.confirmPassword) {
       setError("Passwords do not match");
@@ -57,6 +57,7 @@ function Login({ isRegister = false }: { isRegister?: boolean }) {
       toast.success("Logged In...");
       router.push("/dashboard");
     } catch (error: any) {
+      setLoading(false);
       setError(error.message);
       console.error("Login failed:", error);
     }

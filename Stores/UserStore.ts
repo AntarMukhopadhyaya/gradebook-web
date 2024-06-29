@@ -1,7 +1,27 @@
 // useAuthStore.js
 import { BACKEND } from "@/config";
-import { create } from "zustand";
+import { StateCreator, create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
+
+interface User {
+  _id: string;
+  __v: number;
+  avatar: string;
+  created_at: string;
+  email: string;
+  role: string;
+  verified: boolean;
+  // Add other user properties as needed
+}
+
+interface AuthState {
+  user: User | null;
+  token: string | null;
+  isAuthenticated: boolean;
+  login: (token: string) => Promise<void>;
+  logout: () => void;
+  fetchUser: () => Promise<void>;
+}
 
 const getTokenFromLocalStorage = (): string | null => {
   if (typeof window !== "undefined" && window.localStorage) {
@@ -10,7 +30,7 @@ const getTokenFromLocalStorage = (): string | null => {
   return null;
 };
 
-const authStore = (set) => ({
+const authStore: StateCreator<AuthState> = (set: any) => ({
   user: null,
   token: getTokenFromLocalStorage(),
   isAuthenticated: !!getTokenFromLocalStorage(),
@@ -32,11 +52,10 @@ const authStore = (set) => ({
       headers: { Authorization: `Bearer ${token}` },
     });
     const userData = await response.json();
+    console.log(userData);
     set({ user: userData });
   },
 });
 
-export const useAuthStore = create(
-  persist(devtools(authStore), { name: "auth-storage" })
-);
+export const useAuthStore = create(authStore);
 export default useAuthStore;

@@ -5,7 +5,7 @@ import React from "react";
 import toast from "react-hot-toast";
 
 const Page = () => {
-  const { user } = useAuthStore();
+  const { user }: { user: any } = useAuthStore();
   const router = useRouter();
   if (!user) {
     toast.error("You need to login first");
