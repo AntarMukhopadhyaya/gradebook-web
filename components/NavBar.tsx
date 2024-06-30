@@ -41,6 +41,16 @@ function NavBar() {
                   Profile
                 </Link>
               </li>
+              {user && user.role === "teacher" ? (
+                <>
+                  <li>
+                    <Link href={"/a/create"}>Create Assignment</Link>
+                  </li>
+                  <li>
+                    <Link href={"/a/all"}>all Assignment</Link>
+                  </li>
+                </>
+              ) : null}
               <li>
                 <a>Settings</a>
               </li>

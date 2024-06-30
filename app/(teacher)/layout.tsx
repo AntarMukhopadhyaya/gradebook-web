@@ -1,9 +1,14 @@
 import ProtectedRoute from "@/components/ProtectedRoute";
-import React, { ReactNode } from "react";
+import React, { ReactNode, Suspense } from "react";
+import Loading from "./loading";
 
 const layout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>{<ProtectedRoute role="teacher">{children}</ProtectedRoute>}</div>
+    <div>
+      <Suspense fallback={<Loading />}>
+        <ProtectedRoute role="teacher">{children}</ProtectedRoute>
+      </Suspense>
+    </div>
   );
 };
 

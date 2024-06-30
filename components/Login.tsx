@@ -66,7 +66,7 @@ function Login({ isRegister = false }: { isRegister?: boolean }) {
     return <span className="loading loading-dots loading-lg"></span>;
   }
   return (
-    <div className="w-full max-w-sm p-6 bg-white rounded-lg shadow-md h-fit mt-24">
+    <div className="w-full max-w-sm p-6 bg-gray-200 rounded-lg shadow-md h-fit mt-10 mx-5">
       <h2 className="mb-4 text-2xl text-black font-bold text-center">
         {isRegister ? "Register" : "Login"}
       </h2>
@@ -85,7 +85,7 @@ function Login({ isRegister = false }: { isRegister?: boolean }) {
             id="email"
             value={loginForm.email}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded bg-slate-600 shadow-sm focus:outline-none focus:border-blue-500"
+            className="w-full px-5 py-2 rounded-full bg-slate-600 shadow-sm focus:outline-none focus:border-blue-500"
             required
           />
         </div>
@@ -102,7 +102,7 @@ function Login({ isRegister = false }: { isRegister?: boolean }) {
             id="password"
             value={loginForm.password}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded shadow-sm bg-slate-600 focus:outline-none focus:border-blue-500"
+            className="w-full px-5 py-2 border rounded-full shadow-sm bg-slate-600 focus:outline-none focus:border-blue-500"
             required
           />
         </div>
@@ -120,7 +120,7 @@ function Login({ isRegister = false }: { isRegister?: boolean }) {
               id="confirmPassword"
               value={loginForm.confirmPassword}
               onChange={handleChange}
-              className="w-full px-3 py-2 border rounded shadow-sm bg-slate-600 focus:outline-none focus:border-blue-500"
+              className="w-full px-5 py-2 border rounded-full shadow-sm bg-slate-600 focus:outline-none focus:border-blue-500"
               required
             />
           </div>

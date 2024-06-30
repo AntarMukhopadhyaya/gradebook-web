@@ -1,6 +1,7 @@
 import { BACKEND } from "@/config";
 
-export async function getDataByPost(data: object, path: string, token: string) {
+export async function getDataByPost(data: object, path: string) {
+  const token = localStorage.getItem("authToken");
   const res = await fetch(`${BACKEND}${path}`, {
     method: "POST",
     headers: {
@@ -11,12 +12,14 @@ export async function getDataByPost(data: object, path: string, token: string) {
   });
 
   if (!res.ok) {
+    console.log(await res.json());
     throw new Error("Failed to fetch data");
   }
   return res.json();
 }
-export async function getData(url: string, token: string) {
-  const res = await fetch(url, {
+export async function getData(path: string) {
+  const token = localStorage.getItem("authToken");
+  const res = await fetch(`${BACKEND}${path}`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
