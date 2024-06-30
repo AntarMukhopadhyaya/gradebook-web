@@ -1,6 +1,8 @@
 "use client";
 import Loading from "@/components/Loading";
 import { getData } from "@/utils/getData";
+import { Pencil, Trash2 } from "lucide-react";
+import Link from "next/link";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -43,7 +45,9 @@ const Page = () => {
           <h2 className="card-title">Subject: {assignment.subject}</h2>
           <p>Author ID: {assignment.authorId}</p>
           <p>Created At: {new Date(assignment.createdAt).toLocaleString()}</p>
-          <p>Due Date: {new Date(assignment.dueDate).toLocaleString()}</p>
+          <p className="font-bold">
+            Due Date: {new Date(assignment.dueDate).toLocaleString()}
+          </p>
           {isTomorrow(assignment.dueDate) && (
             <p className="text-red-500 font-bold">Due Date is Tomorrow!</p>
           )}
@@ -56,10 +60,22 @@ const Page = () => {
               >
                 <p className="font-semibold">Q. {question.question}</p>
                 <p className="">Ans: {question.answer}</p>
-                <p className="text-xs text-gray-500">Topic: {question.topic}</p>
-                <p className="text-xs text-gray-500">
-                  Created At: {new Date(question.createdAt).toLocaleString()}
-                </p>
+
+                <div className="flex justify-between items-center gap-3 mt-2">
+                  <div>
+                    <p className="text-xs text-gray-500">
+                      Topic: {question.topic}
+                    </p>
+                  </div>
+                  <div className="flex gap-2">
+                    <Link href="#" className="p-1 rounded-md hover:bg-red-800">
+                      <Trash2 />
+                    </Link>
+                    <Link href="#" className="p-1 rounded-md hover:bg-white">
+                      <Pencil />
+                    </Link>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
