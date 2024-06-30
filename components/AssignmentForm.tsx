@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import Loading from "./Loading";
 
 const AssignmentForm = () => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState<any>({});
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(false);
   const _fetch = async () => {
